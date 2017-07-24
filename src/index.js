@@ -12,8 +12,8 @@ var request = require('request');
 
 
 exports.handler = function(event, context, callback) {
-    var alexa = Alexa.handler(event, context);
-    alexa.APP_ID = APP_ID;
+    var alexa = Alexa.handler(event, context, callback);
+    alexa.appId = APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
     alexa.resources = languageStrings;
     alexa.dynamoDBTableName = 'KCRW_PLAY_STATE';
@@ -56,7 +56,7 @@ var handlers = {
         channel_id = this.attributes['channelId'] || 'live';
         if (this.event.request.intent && this.event.request.intent.slots) {
             what_slot = this.event.request.intent.slots.what;
-            what_type = what_slot.value || channel_id == 'music' ? 'song' : 'show';
+            what_type = what_slot.value || (channel_id == 'music' ? 'song' : 'show');
         } else {
             what_type = channel_id == 'music' ? 'song' : 'show';
         }
@@ -108,6 +108,7 @@ function show_data_for_channel(base, channel_id) {
             surl = 'https://www.kcrw.com/now_playing.json';
             break;
     }
+    console.log('Looking up show data from ' + surl + ' for channel ' +  channel_id);
     request(surl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var showText;
@@ -158,6 +159,7 @@ function song_data_for_channel(base, channel_id) {
             surl = 'https://tracklist-api.kcrw.com/Simulcast';
             break;
     }
+    console.log('Looking up song data from ' + surl + ' for channel ' +  channel_id);
     request(surl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var songText;
