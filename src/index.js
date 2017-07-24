@@ -6,9 +6,11 @@
 */
 'use strict';
 
-var Alexa = require('alexa-sdk');
+const Alexa = require('alexa-sdk');
+const request = require('request');
+const Entities = require('html-entities').XmlEntities;
+const entities = new Entities();
 var APP_ID = "amzn1.ask.skill.20fd9b6b-2754-40e7-a485-95152e19a42b";
-var request = require('request');
 
 
 exports.handler = function(event, context, callback) {
@@ -139,7 +141,7 @@ function show_data_for_channel(base, channel_id) {
             if (!content) {
                 content = null;
             }
-            base.emit(':tellWithCard', showText, showText, content, imageObj);
+            base.emit(':tellWithCard', showText.replace('&', 'and'), entities.encode(showText), entities.encode(content), imageObj);
         } else {
             base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
         }
@@ -175,8 +177,8 @@ function song_data_for_channel(base, channel_id) {
             if (sresponse.albumImage) {
                 imageObj = {smallImageUrl: sresponse.albumImage, largeImageUrl: sresponse.albumImageLarge};
             }
-            base.emit(':tellWithCard', songText, sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist,
-                      sresponse.album, imageObj);
+            base.emit(':tellWithCard', songText.repace('&', 'and'), entities.encode(sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist),
+                      entities.encode(sresponse.album), imageObj);
         } else {
             base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
         }

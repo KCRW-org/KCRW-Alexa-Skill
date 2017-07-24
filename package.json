@@ -16,10 +16,20 @@
   "main": "index.js",
   "dependencies": {
     "alexa-sdk": "~1.0.11",
-    "request": "~2.81.0"
+    "request": "~2.81.0",
+    "html-entities": "~1.2.1"
   },
   "bundeledDependencies": {
     "alexa-sdk": "~1.0.11",
-    "request": "~2.81.0"
+    "request": "~2.81.0",
+    "html-entities": "~1.2.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
+    "imagemin-webpack-plugin": "^1.5.0-beta.0",
+    "webpack": "^3.3.0"
+  },
+  "scripts": {
+    "compile": "webpack --config webpack.config.js"
   }
 }
