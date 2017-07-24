@@ -9,13 +9,13 @@
 const Alexa = require('alexa-sdk');
 const request = require('request');
 const Entities = require('html-entities').XmlEntities;
+const config = require('./config');
 const entities = new Entities();
-var APP_ID = "amzn1.ask.skill.20fd9b6b-2754-40e7-a485-95152e19a42b";
 
 
 exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
-    alexa.appId = APP_ID;
+    alexa.appId = config.APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
     alexa.resources = languageStrings;
     alexa.dynamoDBTableName = 'KCRW_PLAY_STATE';
