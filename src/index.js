@@ -97,8 +97,7 @@ var handlers = {
 // ------- Helper functions -------
 
 function show_data_for_channel(base, channel_id) {
-    var surl, shouldEndSession;
-    shouldEndSession = !!channel_id;
+    var surl;
     switch (channel_id) {
         case "news":
             surl = 'https://www.kcrw.com/now_playing.json?channel_id=kcrwnews';
@@ -147,8 +146,7 @@ function show_data_for_channel(base, channel_id) {
 }
 
 function song_data_for_channel(base, channel_id) {
-    var surl, shouldEndSession;
-    shouldEndSession = !!channel_id;
+    var surl;
     switch (channel_id) {
         case "music":
             surl = 'https://tracklist-api.kcrw.com/Music';
