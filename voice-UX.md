@@ -5,10 +5,20 @@ Streaming Audio
 ---------------
 
 * `Open KCRW` - Starts the KCRW simulcast stream.
-* `Ask KCRW to (play | play radio | play live | play simulcast | play KCRW)` - Same as above
-* `Ask KCRW to play (music | eclectic 24)` - Starts music stream
-* `Ask KCRW to play news` - Starts news stream.
+* `Ask KCRW to play` - Same as above
+* `Ask KCRW to play (radio | live | live stream | simulcast | KCRW)` - Same as above
+* `Ask KCRW to play (music | eclectic 24 | music stream)` - Starts music stream
+* `Ask KCRW to play (news | news 24 | news stream)` - Starts news stream.
 * `Ask KCRW to (stop | pause)` - Stops currently playing stream.
+
+
+Standard Audio Commands
+-----------------------
+
+* `Alexa, pause`
+* `Alexa stop`
+* `Alexa, resume`
+* ...
 
 
 Asking about what's playing
