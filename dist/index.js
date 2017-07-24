@@ -65782,7 +65782,7 @@ module.exports = Html4Entities;
 /* 821 */
 /***/ (function(module, exports) {
 
-exports.APP_ID = "amzn1.ask.skill.20fd9b6b-2754-40e7-a485-95152e19a42b";
+exports.APP_ID = "amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce";
 
 
 /***/ })
