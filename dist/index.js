@@ -1,4 +1,4 @@
-/******/ (function(modules) { // webpackBootstrap
+(function(e, a) { for(var i in a) e[i] = a[i]; }(exports, /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -25253,7 +25253,7 @@ const config = __webpack_require__(821);
 const entities = new Entities();
 
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
     alexa.appId = config.APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
@@ -25262,7 +25262,6 @@ exports.handler = function(event, context, callback) {
     alexa.registerHandlers(handlers);
     alexa.execute();
 };
-
 
 var handlers = {
     'LaunchRequest': function () {
@@ -65787,4 +65786,4 @@ exports.APP_ID = "amzn1.ask.skill.20fd9b6b-2754-40e7-a485-95152e19a42b";
 
 
 /***/ })
-/******/ ]);
+/******/ ])));

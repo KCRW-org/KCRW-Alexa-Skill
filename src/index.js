@@ -13,7 +13,7 @@ const config = require('./config');
 const entities = new Entities();
 
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
     alexa.appId = config.APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
@@ -22,7 +22,6 @@ exports.handler = function(event, context, callback) {
     alexa.registerHandlers(handlers);
     alexa.execute();
 };
-
 
 var handlers = {
     'LaunchRequest': function () {
