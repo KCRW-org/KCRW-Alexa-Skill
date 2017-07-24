@@ -1,9 +1,4 @@
-# WYEP-Alexa-Skill
-This Alexa skill plays the WYEP FM live AAC radio stream, and tells you the title and artist of the song now playing.
+# KCRW-Alexa-Skill
+This Alexa skill plays the KCRW FM live AAC radio music and news streams, and tells you information about the show or song that is currently playing.
 
-Commands:  
-Open y. e. p. (plays stream)  
-Ask y. e. p. what song this is  
-stop  
-resume  
-pause (stops)  
+See [voice-UX.md](./voice-UX.md) for allowed commands.

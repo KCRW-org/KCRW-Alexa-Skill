@@ -1,0 +1,186 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.MoreIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.NavigateHomeIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.NavigateSettingsIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.NextIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.PageDownIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.PageUpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.PauseIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.PreviousIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ResumeIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ScrollDownIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ScrollLeftIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ScrollRightIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.ScrollUpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "PlayIntent",
+      "samples": [
+        "play {channel}",
+        "play"
+      ],
+      "slots": [
+        {
+          "name": "channel",
+          "type": "channels",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "WhatIntent",
+      "samples": [
+        "who {what}",
+        "what {what}",
+        "who is {what}",
+        "what is {what}",
+        "what {what} is playing",
+        "who is this {what}",
+        "what is this {what}",
+        "what {what} is this",
+        "what {what} is playing now",
+        "what is playing",
+        "what is this",
+        "what is playing now",
+        "who is playing",
+        "who is this",
+        "who is playing now"
+      ],
+      "slots": [
+        {
+          "name": "what",
+          "type": "what_types",
+          "samples": []
+        }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "name": "channels",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "music",
+            "synonyms": [
+              "eclectic twenty four",
+              "music stream"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "news",
+            "synonyms": [
+              "news twenty four",
+              "news stream",
+              "live news"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "live",
+            "synonyms": [
+              "simulcast",
+              "live stream",
+              "k. c. r. w."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "what_types",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "song",
+            "synonyms": [
+              "sings this track",
+              "plays this track",
+              "track",
+              "song",
+              "band",
+              "sings this song",
+              "plays this song",
+              "playing this song",
+              "singing this song",
+              "singer"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "show",
+            "synonyms": [
+              "d. j.",
+              "host",
+              "program",
+              "d. j.'s this show",
+              "d. j.'s this program",
+              "hosts this program",
+              "hosts this show"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
