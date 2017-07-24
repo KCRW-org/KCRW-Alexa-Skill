@@ -12,8 +12,8 @@ var request = require('request');
 
 
 exports.handler = function(event, context, callback) {
-    var alexa = Alexa.handler(event, context, callback);
-    alexa.appId = APP_ID;
+    var alexa = Alexa.handler(event, context);
+    alexa.APP_ID = APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
     alexa.resources = languageStrings;
     alexa.dynamoDBTableName = 'KCRW_PLAY_STATE';
@@ -29,8 +29,12 @@ var handlers = {
 
     'PlayIntent': function () {
         var channel_id, channel_slot, surl;
-        channel_slot = this.event.request.intent.slots.channel;
-        channel_id = this.attributes['channelId'] = channel_slot.value || 'live';
+        if (this.event.request.intent && this.event.request.intent.slots) {
+            channel_slot = this.event.request.intent.slots.channel;
+            channel_id = this.attributes['channelId'] = channel_slot.value || 'live';
+        } else {
+            channel_id = this.attributes['channelId'] = 'live';
+        }
         this.emit(':saveState');
         switch (channel_id) {
             case "music":
@@ -50,9 +54,14 @@ var handlers = {
     'WhatIntent': function () {
         var channel_id, what_slot, what_type;
         channel_id = this.attributes['channelId'] || 'live';
-        what_slot = this.event.request.intent.slots.what;
-        what_type = what_slot.value || channel_id == 'music' ? 'song' : 'show';
-        if (what_slot == 'song' || channel_id == 'music') {
+        if (this.event.request.intent && this.event.request.intent.slots) {
+            what_slot = this.event.request.intent.slots.what;
+            what_type = what_slot.value || channel_id == 'music' ? 'song' : 'show';
+        } else {
+            what_type = channel_id == 'music' ? 'song' : 'show';
+        }
+
+        if (what_type == 'song' || channel_id == 'music') {
             song_data_for_channel(this, channel_id);
         } else {
             show_data_for_channel(this, channel_id);
@@ -109,9 +118,9 @@ function show_data_for_channel(base, channel_id) {
             if (!sresponse.title) {
                 showText = base.t('MISSING_SHOW_MESSAGE');
             } else if (sresponse.title == sresponse.show_title) {
-                showText = " " + sresponse.title;
+                showText = base.t('NOW_PLAYING') + " " + sresponse.title;
             } else {
-                showText = " " + sresponse.show_title + " - " + sresponse.title;
+                showText = base.t('NOW_PLAYING') + " " + sresponse.show_title + " - " + sresponse.title;
             }
             if (sresponse.square_image_retina) {
                 imageObj = {smallImageUrl: sresponse.square_image + '/mini', largeImageUrl: sresponse.square_image_retina};
@@ -130,7 +139,7 @@ function show_data_for_channel(base, channel_id) {
             if (!content) {
                 content = null;
             }
-            base.emit(':tellWithCard', base.t('NOW_PLAYING') + showText, showText, content, imageObj);
+            base.emit(':tellWithCard', showText, showText, content, imageObj);
         } else {
             base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
         }
@@ -161,12 +170,12 @@ function song_data_for_channel(base, channel_id) {
             } else if (sresponse.title.toLowerCase() == '[break]') {
                 songText = base.t('SONG_BREAK_MESSAGE');
             } else {
-                songText = " " + sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist;
+                songText = base.t('NOW_PLAYING') + " " + sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist;
             }
             if (sresponse.albumImage) {
                 imageObj = {smallImageUrl: sresponse.albumImage, largeImageUrl: sresponse.albumImageLarge};
             }
-            base.emit(':tellWithCard', base.t('NOW_PLAYING') + songText, songText,
+            base.emit(':tellWithCard', songText, sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist,
                       sresponse.album, imageObj);
         } else {
             base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
