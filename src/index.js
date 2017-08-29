@@ -69,14 +69,15 @@ var handlers = {
             if (is_music) {
                 base.response.cardRenderer(
                     "KCRW's Eclectic 24", null,
-                    {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?fmt.png',
-                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x?fmt.png'}
+                    {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?file.png',
+                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x?file.png'}
                 );
             }
             base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
         }
         if (is_music) {
-            song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true, true);
+            song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true,
+                                  base.t("ON_CHANNEL") + " Eclectic Twenty Four");
         } else {
             show_data_for_channel(base, this.attributes['channelId'] || 'live', start_play);
         }
@@ -163,7 +164,7 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
                 showText = sresponse.show_title + " - " + sresponse.title;
             }
             if (sresponse.square_image_retina) {
-                imageObj = {smallImageUrl: sresponse.square_image + '/mini?fmt.jpg', largeImageUrl: sresponse.square_image_retina + '?fmt.jpg'};
+                imageObj = {smallImageUrl: sresponse.square_image + '/mini?file.jpg', largeImageUrl: sresponse.square_image_retina + '?file.jpg'};
             }
             if (sresponse.hosts) {
                 for (var i=0; i < sresponse.hosts.length; i++) {
@@ -194,7 +195,7 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
     });
 }
 
-function song_data_for_channel(base, channel_id, callback, hide_card, say_channel) {
+function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suffix) {
     var surl;
     switch (channel_id) {
         case "music":
@@ -220,8 +221,8 @@ function song_data_for_channel(base, channel_id, callback, hide_card, say_channe
             } else {
                 songText = base.t('NOW_PLAYING') + " " + sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist;
             }
-            if (say_channel && config.CHANNEL_TEXT[channel_id]) {
-                songText += " " + base.t('ON_CHANNEL') + " " + config.CHANNEL_TEXT[channel_id];
+            if (spoken_suffix) {
+                songText += ", " + spoken_suffix;
             }
             base.response.speak(songText.replace('&', 'and').replace('+', 'and'));
             if (!hide_card) {
