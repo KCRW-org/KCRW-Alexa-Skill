@@ -116,7 +116,11 @@
             "value": "music",
             "synonyms": [
               "eclectic twenty four",
-              "music stream"
+              "eclectic twentyfour",
+              "eclectic 24",
+              "eclectic",
+              "music stream",
+              "live music"
             ]
           }
         },
@@ -126,6 +130,8 @@
             "value": "news",
             "synonyms": [
               "news twenty four",
+              "news twentyfour",
+              "news 24",
               "news stream",
               "live news"
             ]

@@ -20,7 +20,7 @@ service: kcrw-alexa-skill
 provider:
   name: aws
   runtime: nodejs6.10
-  stage: alec-dev
+  stage: beta
 
 # you can overwrite defaults here
 #  region: us-east-1
