@@ -40,7 +40,7 @@ var handlers = {
             case "eclectic24":
             case "music":
                 this.attributes['channelId'] = "music";
-                surl = 'http://kcrw.streamguys1.com/kcrw_128k_aac_e24-alexa';
+                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_e24-alexa';
                 break;
             case "news 24":
             case "news24":
@@ -50,7 +50,7 @@ var handlers = {
                 break;
             default:
                 this.attributes['channelId'] = "live";
-                surl = 'http://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
+                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
                 break;
         }
         if (this.attributes['resume']) {
@@ -60,7 +60,7 @@ var handlers = {
         this.emit(':saveState');
 
         if (resume) {
-            base.response.audioPlayerPlay("REPLACE_ALL", surl, "8442", null, 0);
+            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
             base.emit(':responseReady');        
         }
 
@@ -69,11 +69,11 @@ var handlers = {
             if (is_music) {
                 base.response.cardRenderer(
                     "KCRW's Eclectic 24", null,
-                    {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini',
-                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x'}
+                    {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?fmt.png',
+                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x?fmt.png'}
                 );
             }
-            base.response.audioPlayerPlay("REPLACE_ALL", surl, "8442", null, 0);
+            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
         }
         if (is_music) {
             song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true, true);
@@ -155,7 +155,7 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
                 showText = sresponse.show_title + " - " + sresponse.title;
             }
             if (sresponse.square_image_retina) {
-                imageObj = {smallImageUrl: sresponse.square_image + '/mini', largeImageUrl: sresponse.square_image_retina};
+                imageObj = {smallImageUrl: sresponse.square_image + '/mini?fmt.jpg', largeImageUrl: sresponse.square_image_retina + '?fmt.jpg'};
             }
             if (sresponse.hosts) {
                 for (var i=0; i < sresponse.hosts.length; i++) {
