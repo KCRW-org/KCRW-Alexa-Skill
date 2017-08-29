@@ -37,6 +37,11 @@ var handlers = {
             channel_id = resolve_slot_value(this.event.request.intent.slots.channel,
                                             channel_id);
         }
+        if (this.attributes['resume']) {
+            resume = true;
+            channel_id = this.attributes['channelId'] || channel_id;
+            delete this.attributes['resume'];
+        }
         switch (channel_id) {
             case "music":
                 this.attributes['channelId'] = "music";
@@ -47,13 +52,12 @@ var handlers = {
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news-alexa';
                 break;
             default:
+                if (channel_id != 'live') {
+                    console.log('Unknown channel request, playing live: ' + JSON.stringify(this.event.request.intent));
+                }
                 this.attributes['channelId'] = "live";
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
                 break;
-        }
-        if (this.attributes['resume']) {
-            resume = true;
-            delete this.attributes['resume'];
         }
         this.emit(':saveState');
 
@@ -95,6 +99,9 @@ var handlers = {
         if (what_type == 'song' || channel_id == 'music') {
             song_data_for_channel(this, channel_id);
         } else {
+            if (what_type != 'show') {
+                console.log('Unknown what slot: ' + JSON.stringify(this.event.request.intent));
+            }
             show_data_for_channel(this, channel_id);
         }
     },
@@ -128,9 +135,13 @@ var handlers = {
     },
 
    'Unhandled': function () {
-        this.attributes['speechOutput'] = this.t("HELP_MESSAGE");
-        this.attributes['repromptSpeech'] = this.t("HELP_REPROMPT");
-        this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech']);
+        // Ignore AudioPlayer.* events for now
+        if (this.event.request.type.indexOf('AudioPlayer.') < 0) {
+            console.log('Unrecoginzed request: ' + JSON.stringify(this.event.request));
+            this.emit('AMAZON.HelpIntent');
+        } else {
+            this.emit(':responseReady');
+        }
     }
 };
 
