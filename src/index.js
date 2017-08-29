@@ -1,4 +1,6 @@
 /*jslint node: true */
+/*jslint sub:true*/
+/*jslint esversion: 6*/
 /**
  
  Copyright 2017 Antonio Licon and Alec Mitchell.
@@ -28,22 +30,18 @@ var handlers = {
     },
 
     'PlayIntent': function () {
-        var channel_id, channel_slot, surl, resume;
+        var channel_id, surl, resume;
         var base = this;
         channel_id = 'live';
         if (this.event.request.intent && this.event.request.intent.slots) {
-            channel_slot = this.event.request.intent.slots.channel;
-            channel_id =  (channel_slot && channel_slot.value) || 'live';
+            channel_id = resolve_slot_value(this.event.request.intent.slots.channel,
+                                            channel_id);
         }
         switch (channel_id) {
-            case "eclectic 24":
-            case "eclectic24":
             case "music":
                 this.attributes['channelId'] = "music";
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_e24-alexa';
                 break;
-            case "news 24":
-            case "news24":
             case "news":
                 this.attributes['channelId'] = "news";
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news';
@@ -61,7 +59,8 @@ var handlers = {
 
         if (resume) {
             base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
-            base.emit(':responseReady');        
+            base.emit(':responseReady');
+            return;
         }
 
         var is_music = this.attributes['channelId'] == 'music';
@@ -89,7 +88,8 @@ var handlers = {
         what_type = 'show';
         if (this.event.request.intent && this.event.request.intent.slots) {
             what_slot = this.event.request.intent.slots.what;
-            what_type = (what_slot && what_slot.value) || 'show';
+            what_type = resolve_slot_value(this.event.request.intent.slots.what,
+                                            what_slot);
         }
 
         if (what_type == 'song' || channel_id == 'music') {
@@ -148,7 +148,6 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
             surl = 'https://www.kcrw.com/now_playing.json';
             break;
     }
-    console.log('Looking up show data from ' + surl + ' for channel ' +  channel_id);
     request(surl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var showText;
@@ -195,6 +194,23 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
     });
 }
 
+function resolve_slot_value(slot, default_val) {
+    var slot_val, matches, resolutions, resolved_value;
+    slot_val =  (slot && slot.value) || default_val;
+    resolutions = (slot.resolutions && slot.resolutions.resolutionsPerAuthority) || [];
+    for (var i = 0; i < resolutions.length; i++){
+        matches = resolutions[i].values || [];
+        for (var j = 0; j < matches.length; j++) {
+            resolved_value = matches[j].value.name;
+            if (resolved_value) {
+                slot_val = resolved_value;
+                return slot_val;
+            }
+        }
+    }
+    return slot_val;
+}
+
 function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suffix) {
     var surl;
     switch (channel_id) {
@@ -208,7 +224,6 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
             surl = 'https://tracklist-api.kcrw.com/Simulcast';
             break;
     }
-    console.log('Looking up song data from ' + surl + ' for channel ' +  channel_id);
     request(surl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var songText;
