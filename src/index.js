@@ -44,7 +44,7 @@ var handlers = {
                 break;
             case "news":
                 this.attributes['channelId'] = "news";
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news';
+                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news-alexa';
                 break;
             default:
                 this.attributes['channelId'] = "live";
