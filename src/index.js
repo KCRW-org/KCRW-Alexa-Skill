@@ -70,14 +70,14 @@ var handlers = {
                 base.response.cardRenderer(
                     "KCRW's Eclectic 24", null,
                     {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?file.png',
-                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x?file.png'}
+                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclecticsa24/@@images/square_image/full-2x?file.png'}
                 );
             }
             base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
         }
         if (is_music) {
             song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true,
-                                  base.t("ON_CHANNEL") + " Eclectic Twenty Four");
+                                  '<say-as interpret-as="interjection">' + base.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four");
         } else {
             show_data_for_channel(base, this.attributes['channelId'] || 'live', start_play);
         }
@@ -219,7 +219,7 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
             } else if (sresponse.title.toLowerCase() == '[break]') {
                 songText = base.t('SONG_BREAK_MESSAGE');
             } else {
-                songText = base.t('NOW_PLAYING') + " " + sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist;
+                songText = base.t('NOW_PLAYING') + " " + sresponse.title + ' <say-as interpret-as="interjection">' + base.t('SONG_BY_MESSAGE') + '</say-as> ' + sresponse.artist;
             }
             if (spoken_suffix) {
                 songText += ", " + spoken_suffix;
