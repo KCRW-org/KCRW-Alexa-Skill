@@ -242,7 +242,8 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
             base.response.speak(songText.replace('&', 'and').replace('+', 'and'));
             if (!hide_card) {
                 if (sresponse.albumImage) {
-                    imageObj = {smallImageUrl: sresponse.albumImage, largeImageUrl: sresponse.albumImageLarge};
+                    imageObj = {smallImageUrl: sresponse.albumImage.replace('http:', 'https:'),
+                                largeImageUrl: sresponse.albumImageLarge.replace('http:', 'https:')};
                 }
                 base.response.cardRenderer(entities.encode(sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist),
                                            entities.encode(sresponse.album), imageObj);
