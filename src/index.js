@@ -98,13 +98,21 @@ var handlers = {
         }
     },
 
-    'AMAZON.StopIntent': function () {
+    'StopIntent': function () {
         this.response.audioPlayerStop();
         this.emit(':responseReady');
     },
 
+    'AMAZON.StopIntent': function () {
+        this.emit('StopIntent');
+    },
+
     'AMAZON.PauseIntent': function () {
-        this.emit('AMAZON.StopIntent');
+        this.emit('StopIntent');
+    },
+
+    'AMAZON.CancelIntent': function () {
+        this.emit('StopIntent');
     },
 
     'AMAZON.ResumeIntent': function () {
