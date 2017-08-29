@@ -68,7 +68,9 @@
       "name": "PlayIntent",
       "samples": [
         "play {channel}",
-        "play"
+        "play",
+        "listen to {channel}",
+        "open {channel}"
       ],
       "slots": [
         {
@@ -111,34 +113,41 @@
       "name": "channels",
       "values": [
         {
-          "id": null,
+          "id": "music",
           "name": {
             "value": "music",
             "synonyms": [
+              "eclectic",
+              "music stream",
+              "live music",
               "eclectic twenty four",
-              "music stream"
+              "eclectic24",
+              "eclectic 24",
+              "eclectic twentyfour"
             ]
           }
         },
         {
-          "id": null,
+          "id": "news",
           "name": {
             "value": "news",
             "synonyms": [
               "news twenty four",
+              "news twentyfour",
+              "news 24",
               "news stream",
               "live news"
             ]
           }
         },
         {
-          "id": null,
+          "id": "live",
           "name": {
             "value": "live",
             "synonyms": [
               "simulcast",
               "live stream",
-              "k. c. r. w."
+              "k.c.r.w."
             ]
           }
         }
@@ -148,7 +157,7 @@
       "name": "what_types",
       "values": [
         {
-          "id": null,
+          "id": "song",
           "name": {
             "value": "song",
             "synonyms": [
@@ -166,7 +175,7 @@
           }
         },
         {
-          "id": null,
+          "id": "show",
           "name": {
             "value": "show",
             "synonyms": [

@@ -12,7 +12,6 @@ const Entities = require('html-entities').XmlEntities;
 const config = require('./config');
 const entities = new Entities();
 
-
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
     alexa.appId = config.APP_ID;
@@ -29,37 +28,67 @@ var handlers = {
     },
 
     'PlayIntent': function () {
-        var channel_id, channel_slot, surl;
+        var channel_id, channel_slot, surl, resume;
+        var base = this;
+        channel_id = 'live';
         if (this.event.request.intent && this.event.request.intent.slots) {
             channel_slot = this.event.request.intent.slots.channel;
-            channel_id = this.attributes['channelId'] = channel_slot.value || 'live';
-        } else {
-            channel_id = this.attributes['channelId'] = 'live';
+            channel_id =  (channel_slot && channel_slot.value) || 'live';
         }
-        this.emit(':saveState');
         switch (channel_id) {
+            case "eclectic 24":
+            case "eclectic24":
             case "music":
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_e24';
+                this.attributes['channelId'] = "music";
+                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_e24-alexa';
                 break;
+            case "news 24":
+            case "news24":
             case "news":
+                this.attributes['channelId'] = "news";
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news';
                 break;
             default:
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air';
+                this.attributes['channelId'] = "live";
+                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
                 break;
         }
-        this.response.audioPlayerPlay("REPLACE_ALL", surl, "8442", null, 0);
-        this.emit(':responseReady');
+        if (this.attributes['resume']) {
+            resume = true;
+            delete this.attributes['resume'];
+        }
+        this.emit(':saveState');
+
+        if (resume) {
+            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
+            base.emit(':responseReady');        
+        }
+
+        var is_music = this.attributes['channelId'] == 'music';
+        function start_play() {
+            if (is_music) {
+                base.response.cardRenderer(
+                    "KCRW's Eclectic 24", null,
+                    {smallImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?fmt.png',
+                     largeImageUrl: 'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/full-2x?fmt.png'}
+                );
+            }
+            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
+        }
+        if (is_music) {
+            song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true, true);
+        } else {
+            show_data_for_channel(base, this.attributes['channelId'] || 'live', start_play);
+        }
     },
 
     'WhatIntent': function () {
         var channel_id, what_slot, what_type;
         channel_id = this.attributes['channelId'] || 'live';
+        what_type = 'show';
         if (this.event.request.intent && this.event.request.intent.slots) {
             what_slot = this.event.request.intent.slots.what;
-            what_type = what_slot.value || (channel_id == 'music' ? 'song' : 'show');
-        } else {
-            what_type = channel_id == 'music' ? 'song' : 'show';
+            what_type = (what_slot && what_slot.value) || 'show';
         }
 
         if (what_type == 'song' || channel_id == 'music') {
@@ -79,6 +108,7 @@ var handlers = {
     },
 
     'AMAZON.ResumeIntent': function () {
+        this.attributes['resume'] = true;
         this.emit('PlayIntent');
     },
 
@@ -97,7 +127,7 @@ var handlers = {
 
 // ------- Helper functions -------
 
-function show_data_for_channel(base, channel_id) {
+function show_data_for_channel(base, channel_id, callback, hide_card) {
     var surl;
     switch (channel_id) {
         case "news":
@@ -113,41 +143,50 @@ function show_data_for_channel(base, channel_id) {
     request(surl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var showText;
+            var hosts = [];
             var imageObj = null;
             var content = '';
             var sresponse = JSON.parse(body);
             if (!sresponse.title) {
                 showText = base.t('MISSING_SHOW_MESSAGE');
             } else if (sresponse.title == sresponse.show_title) {
-                showText = base.t('NOW_PLAYING') + " " + sresponse.title;
+                showText = sresponse.title;
             } else {
-                showText = base.t('NOW_PLAYING') + " " + sresponse.show_title + " - " + sresponse.title;
+                showText = sresponse.show_title + " - " + sresponse.title;
             }
             if (sresponse.square_image_retina) {
-                imageObj = {smallImageUrl: sresponse.square_image + '/mini', largeImageUrl: sresponse.square_image_retina};
+                imageObj = {smallImageUrl: sresponse.square_image + '/mini?fmt.jpg', largeImageUrl: sresponse.square_image_retina + '?fmt.jpg'};
             }
             if (sresponse.hosts) {
                 for (var i=0; i < sresponse.hosts.length; i++) {
-                    var host = sresponse.hosts[i];
-                    content += host.name;
+                    hosts.push(sresponse.hosts[i].name);
                 }
             }
-            if (!content || content == sresponse.show_title) {
-                content = sresponse.description;
-            } else {
-                content += '\n\n' + sresponse.description;
+            if (hosts.length) {
+                content += hosts.join(', ');
+            }
+            if (sresponse.description) {
+                if (content) {
+                    content += '\n\n';
+                }
+                content += sresponse.description;
             }
             if (!content) {
                 content = null;
             }
-            base.emit(':tellWithCard', showText.replace('&', 'and'), entities.encode(showText), entities.encode(content), imageObj);
+            base.response.speak(base.t('NOW_PLAYING') + " " + showText.replace('&', 'and').replace('+', 'and'));
+            if (!hide_card) {
+                base.response.cardRenderer(entities.encode(showText), content && entities.encode(content), imageObj);
+            }
         } else {
-            base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
+            base.reponse.speak(base.t('GENERIC_ERROR_MESSAGE'));
         }
+        if (callback) callback();
+        base.emit(':responseReady');
     });
 }
 
-function song_data_for_channel(base, channel_id) {
+function song_data_for_channel(base, channel_id, callback, hide_card, say_channel) {
     var surl;
     switch (channel_id) {
         case "music":
@@ -173,14 +212,22 @@ function song_data_for_channel(base, channel_id) {
             } else {
                 songText = base.t('NOW_PLAYING') + " " + sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist;
             }
-            if (sresponse.albumImage) {
-                imageObj = {smallImageUrl: sresponse.albumImage, largeImageUrl: sresponse.albumImageLarge};
+            if (say_channel && config.CHANNEL_TEXT[channel_id]) {
+                songText += " " + base.t('ON_CHANNEL') + " " + config.CHANNEL_TEXT[channel_id];
             }
-            base.emit(':tellWithCard', songText.repace('&', 'and'), entities.encode(sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist),
-                      entities.encode(sresponse.album), imageObj);
+            base.response.speak(songText.replace('&', 'and').replace('+', 'and'));
+            if (!hide_card) {
+                if (sresponse.albumImage) {
+                    imageObj = {smallImageUrl: sresponse.albumImage, largeImageUrl: sresponse.albumImageLarge};
+                }
+                base.response.cardRenderer(entities.encode(sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist),
+                                           entities.encode(sresponse.album), imageObj);
+            }
         } else {
-            base.emit(':tell', base.t('GENERIC_ERROR_MESSAGE'));
+            base.reponse.speak(base.t('GENERIC_ERROR_MESSAGE'));
         }
+        if (callback) callback();
+        base.emit(':responseReady');
     });
 }
 
@@ -191,6 +238,7 @@ var languageStrings = {
             "MISSING_SHOW_MESSAGE": "I'm sorry, but no program information is currently available.",
             "SONG_BY_MESSAGE": "by",
             "NOW_PLAYING": "Now Playing:",
+            "ON_CHANNEL": "on",
             "INVALID_SONG_CHANNEL_MESSAGE": "Sorry, there is no music information for this stream.",
             "SONG_BREAK_MESSAGE": "No song is currently playing.",
             "GENERIC_ERROR_MESSAGE": "There was an error, please try again later",

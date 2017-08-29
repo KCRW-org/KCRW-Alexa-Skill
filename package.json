@@ -29,6 +29,7 @@
     "zip-webpack-plugin": "^2.0.0"
   },
   "scripts": {
-    "compile": "webpack --config webpack.config.js"
+    "build": "serverless webpack --out dist",
+    "deploy": "serverless deploy"
   }
 }
