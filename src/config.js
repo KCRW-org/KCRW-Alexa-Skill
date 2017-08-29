@@ -1,1 +1,1 @@
-exports.APP_ID = "amzn1.ask.skill.20fd9b6b-2754-40e7-a485-95152e19a42b";
+exports.APP_ID = "amzn1.ask.skill.aba132da-0ac4-4dc1-9e49-a8a1d7af7cc8";
