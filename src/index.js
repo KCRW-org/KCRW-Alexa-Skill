@@ -10,9 +10,7 @@
 
 const Alexa = require('alexa-sdk');
 const request = require('request');
-const Entities = require('html-entities').XmlEntities;
 const config = require('./config');
-const entities = new Entities();
 
 exports.handler = function (event, context, callback) {
     var alexa = Alexa.handler(event, context, callback);
@@ -53,7 +51,7 @@ var handlers = {
                 break;
             default:
                 if (channel_id != 'live') {
-                    console.log('Unknown channel request, playing live: ' + JSON.stringify(this.event.request.intent));
+                    console.log('Unknown channel, playing live: ' + JSON.stringify(this.event.request.intent));
                 }
                 this.attributes['channelId'] = "live";
                 surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
@@ -96,15 +94,16 @@ var handlers = {
                                             what_slot);
         }
 
+        if (what_type != 'show' && what_type != 'song') {
+            console.log('Unknown what slot, using default: ' + JSON.stringify(this.event.request.intent));
+        }
+
         if (what_type == 'song' || channel_id == 'music') {
             if (what_type == 'show') {
                 suffix = '<say-as interpret-as="interjection">' + this.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four";
             }
             song_data_for_channel(this, channel_id, null, false, suffix);
         } else {
-            if (what_type != 'show') {
-                console.log('Unknown what slot: ' + JSON.stringify(this.event.request.intent));
-            }
             show_data_for_channel(this, channel_id);
         }
     },
@@ -137,7 +136,12 @@ var handlers = {
         this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech']);
     },
 
-   'Unhandled': function () {
+    'SessionEndedRequest': function () {
+        console.log('session ended.');
+        this.emit(':saveState', true);
+    },
+
+    'Unhandled': function () {
         // Ignore AudioPlayer.* events for now
         if (this.event.request.type.indexOf('AudioPlayer.') < 0) {
             console.log('Unrecoginzed request: ' + JSON.stringify(this.event.request));
