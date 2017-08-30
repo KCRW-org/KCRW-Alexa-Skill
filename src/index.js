@@ -87,7 +87,7 @@ var handlers = {
     },
 
     'WhatIntent': function () {
-        var channel_id, what_slot, what_type;
+        var channel_id, suffix, what_slot, what_type;
         channel_id = this.attributes['channelId'] || 'live';
         what_type = 'show';
         if (this.event.request.intent && this.event.request.intent.slots) {
@@ -97,7 +97,10 @@ var handlers = {
         }
 
         if (what_type == 'song' || channel_id == 'music') {
-            song_data_for_channel(this, channel_id);
+            if (what_type == 'show') {
+                suffix = '<say-as interpret-as="interjection">' + this.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four";
+            }
+            song_data_for_channel(this, channel_id, null, false, suffix);
         } else {
             if (what_type != 'show') {
                 console.log('Unknown what slot: ' + JSON.stringify(this.event.request.intent));
@@ -195,7 +198,7 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
             }
             base.response.speak(base.t('NOW_PLAYING') + " " + showText.replace('&', 'and').replace('+', 'and'));
             if (!hide_card) {
-                base.response.cardRenderer(entities.encode(showText), content && entities.encode(content), imageObj);
+                base.response.cardRenderer(entity_replace(showText), entity_replace(content), imageObj);
             }
         } else {
             base.reponse.speak(base.t('GENERIC_ERROR_MESSAGE'));
@@ -256,8 +259,8 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
                     imageObj = {smallImageUrl: sresponse.albumImage.replace('http:', 'https:'),
                                 largeImageUrl: sresponse.albumImageLarge.replace('http:', 'https:')};
                 }
-                base.response.cardRenderer(entities.encode(sresponse.title + " " + base.t('SONG_BY_MESSAGE') + " " + sresponse.artist),
-                                           entities.encode(sresponse.album), imageObj);
+                base.response.cardRenderer(entity_replace(sresponse.title) + " " + base.t('SONG_BY_MESSAGE') + " " + entity_replace(sresponse.artist),
+                                           entity_replace(sresponse.album), imageObj);
             }
         } else {
             base.reponse.speak(base.t('GENERIC_ERROR_MESSAGE'));
@@ -265,6 +268,10 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
         if (callback) callback();
         base.emit(':responseReady');
     });
+}
+
+function entity_replace(str) {
+    return str && str.replace('<', '&lt;').replace('>', '&gt;');
 }
 
 var languageStrings = {
