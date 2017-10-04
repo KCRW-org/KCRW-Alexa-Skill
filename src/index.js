@@ -78,7 +78,7 @@ var handlers = {
         }
         if (is_music) {
             song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true,
-                                  '<say-as interpret-as="interjection">' + base.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four");
+                                  base.t("ON_CHANNEL") + " Eclectic Twenty Four");
         } else {
             show_data_for_channel(base, this.attributes['channelId'] || 'live', start_play);
         }
@@ -100,7 +100,7 @@ var handlers = {
 
         if (what_type == 'song' || channel_id == 'music') {
             if (what_type == 'show') {
-                suffix = '<say-as interpret-as="interjection">' + this.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four";
+                suffix = this.t("ON_CHANNEL") + " Eclectic Twenty Four";
             }
             song_data_for_channel(this, channel_id, null, false, suffix);
         } else {
