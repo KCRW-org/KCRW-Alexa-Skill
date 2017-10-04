@@ -252,7 +252,7 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
             } else if (sresponse.title.toLowerCase() == '[break]') {
                 songText = base.t('SONG_BREAK_MESSAGE');
             } else {
-                songText = base.t('NOW_PLAYING') + " " + sresponse.title + ' <say-as interpret-as="interjection">' + base.t('SONG_BY_MESSAGE') + '</say-as> ' + sresponse.artist;
+                songText = base.t('NOW_PLAYING') + " " + sresponse.title + ' <emphasis">' + base.t('SONG_BY_MESSAGE') + '</emphasis> ' + sresponse.artist;
             }
             if (spoken_suffix) {
                 songText += ", " + spoken_suffix;
