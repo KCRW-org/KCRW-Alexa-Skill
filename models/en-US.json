@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "k. c. r. w.",
+      "invocationName": "k. c. r. w. beta",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
