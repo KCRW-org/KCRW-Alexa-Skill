@@ -21,6 +21,8 @@ provider:
   name: aws
   runtime: nodejs6.10
   stage: prod
+  memorySize: 512
+  timeout: 3
 
 # you can overwrite defaults here
 #  region: us-east-1
