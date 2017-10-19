@@ -1,0 +1,58 @@
+{
+  "skillManifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play KCRW.",
+            "Alexa, tell KCRW to play music.",
+            "Alexa, ask KCRW what song is this."
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "smallIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce/images/eyJkIjoiYXdLOTdObTRFaWNVUnIrTWdUYmlKMkcra09VRmVsc0JJb1RSTUVFaGg4aHBaZkUvaDc5M1Q5QjRHUlRYa0J2Z29hM1llTktyRmNlRjhNdlk2cHZzZit1ZHpJSDh5VG93MDAxSStEVVdUL1Y1ampZaGtUQzBLU0lBam1JSGhEU04iLCJpdiI6InBjSDhPaksrd0Rucyt4R1pzSVpBb3c9PSIsInYiOjF9",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music and news streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "largeIconUri": "https://api.amazonalexa.com/v0/skills/amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce/images/eyJkIjoiOXgzaE02Z0J4eGRDL3VMb3h1N1Jrc1BmSExyN3BsYW01bHk1SEcrQUdrOCtNekU3bEpib1FoM2sycnY4QTBEbTRYZkl6bWtoOENrSS84YnJCUHVXcHVWY1J5cXpjUDFTU05xS1QwZmx3MEdtNUZFajVuM0xybnlZMnRseEc1dGlkRTVwdSszR0sxM0VDSzhvRytTZUZ3PT0iLCJpdiI6IlR3S2JGSlFxeFJzTG1ia01sL1JOOFE9PSIsInYiOjF9"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Listen to KCRW live streams and find out what's currently playing. You can use commands like:\n\n\"Play KCRW\"\n\"Ask KCRW what's playing\"\n\"Ask KCRW what song this is\"\n\"Ask KCRW what show is this\"\n\"Play music from KCRW\"\n\"Play Eclectic24 from KCRW\"\n\"Play news from KCRW\"",
+      "category": "STREAMING_SERVICE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:533322597784:function:kcrw-alexa-skill-prod-handler"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        }
+      },
+      "isExportCompliant": true,
+      "containsAds": true,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "k. c. r. w.",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "Exit"
+          ]
+        },
+        {
+          "name": "PlayIntent",
+          "slots": [
+            {
+              "name": "channel",
+              "type": "channels",
+              "samples": []
+            }
+          ],
+          "samples": [
+            "play {channel}",
+            "play",
+            "listen to {channel}",
+            "open {channel}",
+            "stream {channel}",
+            "stream"
+          ]
+        },
+        {
+          "name": "WhatIntent",
+          "slots": [
+            {
+              "name": "what",
+              "type": "what_types",
+              "samples": []
+            }
+          ],
+          "samples": [
+            "who {what}",
+            "what {what}",
+            "who is {what}",
+            "what is {what}",
+            "what {what} is playing",
+            "who is this {what}",
+            "what is this {what}",
+            "what {what} is this",
+            "what {what} is playing now",
+            "what is playing",
+            "what is this",
+            "what is playing now",
+            "who is playing",
+            "who is this",
+            "who is playing now",
+            "what {what} this is",
+            "who this is",
+            "what's playing",
+            "who's playing",
+            "who's this"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "music",
+              "name": {
+                "value": "music",
+                "synonyms": [
+                  "eclectic",
+                  "music stream",
+                  "live music",
+                  "eclectic twenty four",
+                  "eclectic24",
+                  "eclectic 24",
+                  "eclectic twentyfour",
+                  "e. twenty four",
+                  "e. 24",
+                  "e. twentyfour",
+                  "twenty four",
+                  "24",
+                  "twentyfour"
+                ]
+              }
+            },
+            {
+              "id": "news",
+              "name": {
+                "value": "news",
+                "synonyms": [
+                  "news twenty four",
+                  "news twentyfour",
+                  "news 24",
+                  "news stream",
+                  "live news"
+                ]
+              }
+            },
+            {
+              "id": "live",
+              "name": {
+                "value": "live",
+                "synonyms": [
+                  "simulcast",
+                  "live stream",
+                  "k.c.r.w.",
+                  "radio",
+                  "live radio"
+                ]
+              }
+            }
+          ],
+          "name": "channels"
+        },
+        {
+          "values": [
+            {
+              "id": "song",
+              "name": {
+                "value": "song",
+                "synonyms": [
+                  "sings this track",
+                  "plays this track",
+                  "track",
+                  "song",
+                  "band",
+                  "sings this song",
+                  "plays this song",
+                  "playing this song",
+                  "singing this song",
+                  "singer"
+                ]
+              }
+            },
+            {
+              "id": "show",
+              "name": {
+                "value": "show",
+                "synonyms": [
+                  "d. j.",
+                  "host",
+                  "program",
+                  "d. j.'s this show",
+                  "d. j.'s this program",
+                  "hosts this program",
+                  "hosts this show"
+                ]
+              }
+            }
+          ],
+          "name": "what_types"
+        }
+      ]
+    }
+  }
+}
