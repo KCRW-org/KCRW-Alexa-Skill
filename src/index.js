@@ -78,7 +78,7 @@ var handlers = {
         }
         if (is_music) {
             song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true,
-                                  '<say-as interpret-as="interjection">' + base.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four");
+                                  '<emphasis level="strong">' + base.t("ON_CHANNEL") + "</emphasis> Eclectic Twenty Four");
         } else {
             show_data_for_channel(base, this.attributes['channelId'] || 'live', start_play);
         }
@@ -100,10 +100,13 @@ var handlers = {
 
         if (what_type == 'song' || channel_id == 'music') {
             if (what_type == 'show') {
-                suffix = '<say-as interpret-as="interjection">' + this.t("ON_CHANNEL") + "</say-as> Eclectic Twenty Four";
+                suffix = '<emphasis level="strong">' + this.t("ON_CHANNEL") + "</emphasis> Eclectic Twenty Four";
             }
             song_data_for_channel(this, channel_id, null, false, suffix);
         } else {
+            if (what_type != 'show') {
+                console.log('Unknown what slot: ' + JSON.stringify(this.event.request.intent));
+            }
             show_data_for_channel(this, channel_id);
         }
     },
@@ -252,7 +255,7 @@ function song_data_for_channel(base, channel_id, callback, hide_card, spoken_suf
             } else if (sresponse.title.toLowerCase() == '[break]') {
                 songText = base.t('SONG_BREAK_MESSAGE');
             } else {
-                songText = base.t('NOW_PLAYING') + " " + sresponse.title + ' <say-as interpret-as="interjection">' + base.t('SONG_BY_MESSAGE') + '</say-as> ' + sresponse.artist;
+                songText = base.t('NOW_PLAYING') + " " + sresponse.title + ' <emphasis level="strong">' + base.t('SONG_BY_MESSAGE') + '</emphasis> ' + sresponse.artist;
             }
             if (spoken_suffix) {
                 songText += ", " + spoken_suffix;
