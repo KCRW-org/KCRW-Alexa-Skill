@@ -2,9 +2,9 @@
 /*jslint sub:true*/
 /*jslint esversion: 6*/
 /**
- 
+
  Copyright 2017 Antonio Licon and Alec Mitchell.
- 
+
 */
 'use strict';
 
