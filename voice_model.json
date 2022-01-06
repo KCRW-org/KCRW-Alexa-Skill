@@ -1,168 +1,245 @@
 {
-  "intents": [
-    {
-      "name": "AMAZON.CancelIntent",
-      "samples": []
-    },
-    {
-      "name": "AMAZON.HelpIntent",
-      "samples": []
-    },
-    {
-      "name": "AMAZON.PauseIntent",
-      "samples": []
-    },
-    {
-      "name": "AMAZON.ResumeIntent",
-      "samples": []
-    },
-    {
-      "name": "AMAZON.StopIntent",
-      "samples": [
-        "Exit"
-      ]
-    },
-    {
-      "name": "PlayIntent",
-      "samples": [
-        "play {channel}",
-        "play",
-        "listen to {channel}",
-        "open {channel}",
-        "stream {channel}",
-        "stream"
-      ],
-      "slots": [
-        {
-          "name": "channel",
-          "type": "channels",
-          "samples": []
-        }
-      ]
-    },
-    {
-      "name": "WhatIntent",
-      "samples": [
-        "who {what}",
-        "what {what}",
-        "who is {what}",
-        "what is {what}",
-        "what {what} is playing",
-        "who is this {what}",
-        "what is this {what}",
-        "what {what} is this",
-        "what {what} is playing now",
-        "what is playing",
-        "what is this",
-        "what is playing now",
-        "who is playing",
-        "who is this",
-        "who is playing now",
-        "what {what} this is",
-        "who this is",
-        "what's playing",
-        "who's playing",
-        "who's this"
-      ],
-      "slots": [
-        {
-          "name": "what",
-          "type": "what_types",
-          "samples": []
-        }
-      ]
-    }
-  ],
-  "types": [
-    {
-      "name": "channels",
-      "values": [
-        {
-          "id": "music",
-          "name": {
-            "value": "music",
-            "synonyms": [
-              "eclectic",
-              "music stream",
-              "live music",
-              "eclectic twenty four",
-              "eclectic24",
-              "eclectic 24",
-              "eclectic twentyfour",
-              "e. twenty four",
-              "e. 24",
-              "e. twentyfour",
-              "twenty four",
-              "24",
-              "twentyfour"
-            ]
-          }
-        },
-        {
-          "id": "news",
-          "name": {
-            "value": "news",
-            "synonyms": [
-              "news twenty four",
-              "news twentyfour",
-              "news 24",
-              "news stream",
-              "live news"
-            ]
-          }
-        },
-        {
-          "id": "live",
-          "name": {
-            "value": "live",
-            "synonyms": [
-              "simulcast",
-              "live stream",
-              "k.c.r.w.",
-              "radio",
-              "live radio"
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "what_types",
-      "values": [
-        {
-          "id": "song",
-          "name": {
-            "value": "song",
-            "synonyms": [
-              "sings this track",
-              "plays this track",
-              "track",
-              "song",
-              "band",
-              "sings this song",
-              "plays this song",
-              "playing this song",
-              "singing this song",
-              "singer"
-            ]
-          }
-        },
-        {
-          "id": "show",
-          "name": {
-            "value": "show",
-            "synonyms": [
-              "d. j.",
-              "host",
-              "program",
-              "d. j.'s this show",
-              "d. j.'s this program",
-              "hosts this program",
-              "hosts this show"
-            ]
-          }
-        }
-      ]
-    }
-  ]
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "k. c. r. w.",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.PauseIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.ResumeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": [
+                      "Exit"
+                  ]
+              },
+              {
+                  "name": "PlayIntent",
+                  "slots": [
+                      {
+                          "name": "channel",
+                          "type": "channels"
+                      }
+                  ],
+                  "samples": [
+                      "play {channel}",
+                      "play",
+                      "listen to {channel}",
+                      "open {channel}",
+                      "stream {channel}",
+                      "stream"
+                  ]
+              },
+              {
+                  "name": "WhatIntent",
+                  "slots": [
+                      {
+                          "name": "what",
+                          "type": "what_types"
+                      }
+                  ],
+                  "samples": [
+                      "who {what}",
+                      "what {what}",
+                      "who is {what}",
+                      "what is {what}",
+                      "what {what} is playing",
+                      "who is this {what}",
+                      "what is this {what}",
+                      "what {what} is this",
+                      "what {what} is playing now",
+                      "what is playing",
+                      "what is this",
+                      "what is playing now",
+                      "who is playing",
+                      "who is this",
+                      "who is playing now",
+                      "what {what} this is",
+                      "who this is",
+                      "what's playing",
+                      "who's playing",
+                      "who's this"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              }
+          ],
+          "types": [
+              {
+                  "name": "channels",
+                  "values": [
+                      {
+                          "id": "music",
+                          "name": {
+                              "value": "music",
+                              "synonyms": [
+                                  "kcrw music",
+                                  "k. c. r. w. music",
+                                  "eclectic",
+                                  "music stream",
+                                  "live music",
+                                  "eclectic twenty four",
+                                  "eclectic24",
+                                  "eclectic 24",
+                                  "eclectic twentyfour",
+                                  "e. twenty four",
+                                  "e. 24",
+                                  "e. twentyfour",
+                                  "twenty four",
+                                  "24",
+                                  "twentyfour"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "news",
+                          "name": {
+                              "value": "news",
+                              "synonyms": [
+                                  "kcrw news",
+                                  "k. c. r. w. news",
+                                  "news twenty four",
+                                  "news twentyfour",
+                                  "news 24",
+                                  "news stream",
+                                  "live news"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "live",
+                          "name": {
+                              "value": "live",
+                              "synonyms": [
+                                  "kcrw",
+                                  "simulcast",
+                                  "live stream",
+                                  "k.c.r.w.",
+                                  "radio",
+                                  "live radio"
+                              ]
+                          }
+                      }
+                  ]
+              },
+              {
+                  "name": "what_types",
+                  "values": [
+                      {
+                          "id": "song",
+                          "name": {
+                              "value": "song",
+                              "synonyms": [
+                                  "sings this track",
+                                  "plays this track",
+                                  "track",
+                                  "song",
+                                  "band",
+                                  "sings this song",
+                                  "plays this song",
+                                  "playing this song",
+                                  "singing this song",
+                                  "singer"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "show",
+                          "name": {
+                              "value": "show",
+                              "synonyms": [
+                                  "d. j.",
+                                  "host",
+                                  "program",
+                                  "d. j.'s this show",
+                                  "d. j.'s this program",
+                                  "hosts this program",
+                                  "hosts this show"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      "_nameFreeInteraction": {
+          "ingressPoints": [
+              {
+                  "type": "INTENT",
+                  "sampleUtterances": [
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play k. c. r. w. music"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play k. c. r. w. news"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play eclectic twenty four"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play k. c. r. w. eclectic twenty four"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "stream eclectic twenty four"
+                      }
+                  ],
+                  "name": "PlayIntent"
+              },
+              {
+                  "type": "LAUNCH",
+                  "sampleUtterances": [
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play k. c. r. w."
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "stream k. c. r. w."
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play k. c. r. w. radio"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "stream k. c. r. w. radio"
+                      }
+                  ]
+              },
+              {
+                  "type": "INTENT",
+                  "sampleUtterances": [
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "what song is this"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "what show is this"
+                      }
+                  ],
+                  "name": "WhatIntent"
+              }
+          ]
+      }
+  }
 }

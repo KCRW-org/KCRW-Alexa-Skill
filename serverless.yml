@@ -1,3 +1,5 @@
+org: alecpm
+app: kcrw-alexa-skill
 # Welcome to Serverless!
 #
 # This file is the main config file for your service.
@@ -12,6 +14,7 @@
 # Happy Coding!
 
 service: kcrw-alexa-skill
+frameworkVersion: ^2.70.0
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -19,10 +22,11 @@ service: kcrw-alexa-skill
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs14.x
   stage: prod
   memorySize: 512
   timeout: 3
+  lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
 #  region: us-east-1
@@ -54,53 +58,179 @@ provider:
 plugins:
   - serverless-webpack
   - serverless-dynamodb-local
-
+  - serverless-alexa-skills
 functions:
   handler:
-    handler: index.handler
+    handler: src/index.handler
     events:
-      - alexaSkill
+      - alexaSkill: amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce
 
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
-
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
-
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+custom:
+  alexa:
+    vendorId: M3HBK4U0VC2544
+    localServerPort: 9999
+    skills:
+      - id: amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce
+        manifest:
+          publishingInformation:
+            locales:
+              en-US:
+                name: KCRW
+          manifestVersion: '1.0'
+        models:
+          en:
+            interactionModel:
+              languageModel:
+                invocationName: k. c. r. w.
+                intents:
+                - name: AMAZON.CancelIntent
+                  samples: []
+                - name: AMAZON.HelpIntent
+                  samples: []
+                - name: AMAZON.PauseIntent
+                  samples: []
+                - name: AMAZON.ResumeIntent
+                  samples: []
+                - name: AMAZON.StopIntent
+                  samples:
+                  - Exit
+                - name: PlayIntent
+                  slots:
+                  - name: channel
+                    type: channels
+                  samples:
+                  - play {channel}
+                  - play
+                  - listen to {channel}
+                  - open {channel}
+                  - stream {channel}
+                  - stream
+                - name: WhatIntent
+                  slots:
+                  - name: what
+                    type: what_types
+                  samples:
+                  - who {what}
+                  - what {what}
+                  - who is {what}
+                  - what is {what}
+                  - what {what} is playing
+                  - who is this {what}
+                  - what is this {what}
+                  - what {what} is this
+                  - what {what} is playing now
+                  - what is playing
+                  - what is this
+                  - what is playing now
+                  - who is playing
+                  - who is this
+                  - who is playing now
+                  - what {what} this is
+                  - who this is
+                  - what's playing
+                  - who's playing
+                  - who's this
+                - name: AMAZON.NavigateHomeIntent
+                  samples: []
+                types:
+                - name: channels
+                  values:
+                  - id: music
+                    name:
+                      value: music
+                      synonyms:
+                      - kcrw music
+                      - k. c. r. w. music
+                      - eclectic
+                      - music stream
+                      - live music
+                      - eclectic twenty four
+                      - eclectic24
+                      - eclectic 24
+                      - eclectic twentyfour
+                      - e. twenty four
+                      - e. 24
+                      - e. twentyfour
+                      - twenty four
+                      - '24'
+                      - twentyfour
+                  - id: news
+                    name:
+                      value: news
+                      synonyms:
+                      - kcrw news
+                      - k. c. r. w. news
+                      - news twenty four
+                      - news twentyfour
+                      - news 24
+                      - news stream
+                      - live news
+                  - id: live
+                    name:
+                      value: live
+                      synonyms:
+                      - kcrw
+                      - simulcast
+                      - live stream
+                      - k.c.r.w.
+                      - radio
+                      - live radio
+                - name: what_types
+                  values:
+                  - id: song
+                    name:
+                      value: song
+                      synonyms:
+                      - sings this track
+                      - plays this track
+                      - track
+                      - song
+                      - band
+                      - sings this song
+                      - plays this song
+                      - playing this song
+                      - singing this song
+                      - singer
+                  - id: show
+                    name:
+                      value: show
+                      synonyms:
+                      - d. j.
+                      - host
+                      - program
+                      - d. j.'s this show
+                      - d. j.'s this program
+                      - hosts this program
+                      - hosts this show
+              _nameFreeInteraction:
+                ingressPoints:
+                - type: INTENT
+                  sampleUtterances:
+                  - format: RAW_TEXT
+                    value: play k. c. r. w. music
+                  - format: RAW_TEXT
+                    value: play k. c. r. w. news
+                  - format: RAW_TEXT
+                    value: play eclectic twenty four
+                  - format: RAW_TEXT
+                    value: play k. c. r. w. eclectic twenty four
+                  - format: RAW_TEXT
+                    value: stream eclectic twenty four
+                  name: PlayIntent
+                - type: LAUNCH
+                  sampleUtterances:
+                  - format: RAW_TEXT
+                    value: play k. c. r. w.
+                  - format: RAW_TEXT
+                    value: stream k. c. r. w.
+                  - format: RAW_TEXT
+                    value: play k. c. r. w. radio
+                  - format: RAW_TEXT
+                    value: stream k. c. r. w. radio
+                - type: INTENT
+                  sampleUtterances:
+                  - format: RAW_TEXT
+                    value: what song is this
+                  - format: RAW_TEXT
+                    value: what show is this
+                  name: WhatIntent

@@ -8,7 +8,7 @@
 */
 'use strict';
 
-const Alexa = require('alexa-sdk');
+const Alexa = require('ask-sdk-v1adapter');
 const request = require('request');
 const config = require('./config');
 
