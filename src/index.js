@@ -17,7 +17,7 @@ exports.handler = function (event, context, callback) {
     alexa.appId = config.APP_ID;
     // To enable string internationalization (i18n) features, set a resources object.
     alexa.resources = languageStrings;
-    alexa.dynamoDBTableName = 'KCRW_PLAY_STATE';
+    //alexa.dynamoDBTableName = 'KCRW_PLAY_STATE';
     alexa.registerHandlers(handlers);
     alexa.execute();
 };
@@ -43,24 +43,28 @@ var handlers = {
         switch (channel_id) {
             case "music":
                 this.attributes['channelId'] = "music";
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_e24-alexa';
+                surl = 'https://streams.kcrw.com/kcrw_aac?aw_0_1st.playerid=ALEXA_SKILL';
                 break;
             case "news":
                 this.attributes['channelId'] = "news";
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_news-alexa';
+                surl = 'https://streams.kcrw.com/news24_aac?aw_0_1st.playerid=ALEXA_SKILL';
+                break;
+            case "bent":
+                this.attributes['channelId'] = "bent";
+                surl = 'https://streams.kcrw.com/bent24_aac?aw_0_1st.playerid=ALEXA_SKILL';
                 break;
             default:
                 if (channel_id != 'live') {
                     console.log('Unknown channel, playing live: ' + JSON.stringify(this.event.request.intent));
                 }
                 this.attributes['channelId'] = "live";
-                surl = 'https://kcrw.streamguys1.com/kcrw_128k_aac_on_air-alexa';
+                surl = 'https://streams.kcrw.com/kcrw_aac?aw_0_1st.playerid=ALEXA_SKILL';
                 break;
         }
         this.emit(':saveState');
 
         if (resume) {
-            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
+            base.response.audioPlayerPlay("REPLACE_ALL", surl, "8442", null, 0);
             base.emit(':responseReady');
             return;
         }
@@ -74,7 +78,7 @@ var handlers = {
                      largeImageUrl: 'https://www.kcrw.com/music/shows/eclecticsa24/@@images/square_image/full-2x?file.png'}
                 );
             }
-            base.response.audioPlayer("play", "REPLACE_ALL", surl, "8442", null, 0);
+            base.response.audioPlayerPlay("REPLACE_ALL", surl, "8442", null, 0);
         }
         if (is_music) {
             song_data_for_channel(base, this.attributes['channelId'] || 'live', start_play, true,
@@ -162,6 +166,11 @@ function show_data_for_channel(base, channel_id, callback, hide_card) {
             break;
         case "music":
             return song_data_for_channel(channel_id);
+        case "bent":
+            base.reponse.speak(base.t('MISSING_SONG_MESSAGE'));
+            if (callback) callback();
+            base.emit(':responseReady');
+            return;
         default:
             surl = 'https://www.kcrw.com/now_playing.json';
             break;
@@ -290,10 +299,10 @@ var languageStrings = {
             "SONG_BREAK_MESSAGE": "No song is currently playing.",
             "GENERIC_ERROR_MESSAGE": "There was an error, please try again later",
             "SKILL_NAME": "K. C. R. W. Radio",
-            "WELCOME_MESSAGE": "Welcome to %s. You can ask a question like, what\'s the recipe for a chest? ... Now, what can I help you with.",
+            "WELCOME_MESSAGE": "Welcome to %s. You can say things like: Play. Play music. Play news. Play Bent24. What\'s playing? What song is this? or you can say stop....Now, what can I help you with?",
             "WELCOME_REPROMPT": "For instructions on what you can say, please say help me.",
-            "HELP_MESSAGE": "You can say things like: Play. Play music. Play news. What\'s playing? What song is this? or you can say stop.",
-            "HELP_REPROMPT": "You can say things like: Play. Play music. Play news. What\'s playing? What song is this? or you can say stop....Now, what can I help you with?",
+            "HELP_MESSAGE": "You can say things like: Play. Play music. Play news. Play Bent24. What\'s playing? What song is this? or you can say stop.",
+            "HELP_REPROMPT": "You can say things like: Play. Play music. Play news. Play Bent24. What\'s playing? What song is this? or you can say stop....Now, what can I help you with?",
         }
     }
 };

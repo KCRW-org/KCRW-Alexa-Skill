@@ -27,9 +27,8 @@ provider:
   memorySize: 512
   timeout: 3
   lambdaHashingVersion: 20201221
-
-# you can overwrite defaults here
-#  region: us-east-1
+  profile: kcrw
+  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
   iamRoleStatements:
@@ -42,23 +41,15 @@ provider:
           - "lambda:InvokeFunction"
       Resource: "*"
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+package:
+  individually: true
 
 plugins:
   - serverless-webpack
   - serverless-dynamodb-local
   - serverless-alexa-skills
+  - serverless-plugin-bespoken
+
 functions:
   handler:
     handler: src/index.handler
@@ -66,9 +57,14 @@ functions:
       - alexaSkill: amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce
 
 custom:
+  dynamodb:
+    stages:
+      - dev
+      - prod
   alexa:
     vendorId: M3HBK4U0VC2544
     localServerPort: 9999
+    locale: en-US
     skills:
       - id: amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce
         manifest:

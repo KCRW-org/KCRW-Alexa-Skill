@@ -121,6 +121,21 @@
                           }
                       },
                       {
+                          "id": "bent",
+                          "name": {
+                              "value": "bent",
+                              "synonyms": [
+                                  "Bent Twenty Four",
+                                  "Bent By Nature",
+                                  "Snap",
+                                  "S. N. A. P.",
+                                  "Deerdra O. Donohue",
+                                  "Deedra O. Donohue",
+                                  "Deirdre O’Donoghue",
+                              ]
+                          }
+                      },
+                      {
                           "id": "live",
                           "name": {
                               "value": "live",
@@ -200,6 +215,14 @@
                       {
                           "format": "RAW_TEXT",
                           "value": "stream eclectic twenty four"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "play bent twenty four"
+                      },
+                      {
+                          "format": "RAW_TEXT",
+                          "value": "stream bent twenty four"
                       }
                   ],
                   "name": "PlayIntent"

@@ -8,9 +8,6 @@ module.exports = {
   target: 'node',
   stats: 'minimal',
   mode: slsw.lib.webpack.isLocal ? "development" : "production",
-  module: {
-    loaders: []
-  },
   plugins: [
     // Copy the images folder and optimize all the images
     new CopyWebpackPlugin({
