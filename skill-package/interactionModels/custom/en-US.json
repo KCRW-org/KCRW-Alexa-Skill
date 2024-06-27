@@ -1,0 +1,261 @@
+{
+  "interactionModel": {
+    "_nameFreeInteraction": {
+      "ingressPoints": [
+        {
+          "sampleUtterances": [
+            {
+              "format": "RAW_TEXT",
+              "value": "play k. c. r. w. music"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "play k. c. r. w. news"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "play eclectic twenty four"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "play k. c. r. w. eclectic twenty four"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "stream eclectic twenty four"
+            }
+          ],
+          "name": "PlayIntent",
+          "type": "INTENT"
+        },
+        {
+          "sampleUtterances": [
+            {
+              "format": "RAW_TEXT",
+              "value": "play k. c. r. w."
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "stream k. c. r. w."
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "play k. c. r. w. radio"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "stream k. c. r. w. radio"
+            }
+          ],
+          "type": "LAUNCH"
+        },
+        {
+          "sampleUtterances": [
+            {
+              "format": "RAW_TEXT",
+              "value": "what song is this"
+            },
+            {
+              "format": "RAW_TEXT",
+              "value": "what show is this"
+            }
+          ],
+          "name": "WhatIntent",
+          "type": "INTENT"
+        }
+      ]
+    },
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "Exit"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "channel",
+              "type": "channels"
+            }
+          ],
+          "name": "PlayIntent",
+          "samples": [
+            "play {channel}",
+            "play",
+            "listen to {channel}",
+            "open {channel}",
+            "stream {channel}",
+            "stream"
+          ]
+        },
+        {
+          "slots": [
+            {
+              "name": "what",
+              "type": "what_types"
+            }
+          ],
+          "name": "WhatIntent",
+          "samples": [
+            "who {what}",
+            "what {what}",
+            "who is {what}",
+            "what is {what}",
+            "what {what} is playing",
+            "who is this {what}",
+            "what is this {what}",
+            "what {what} is this",
+            "what {what} is playing now",
+            "what is playing",
+            "what is this",
+            "what is playing now",
+            "who is playing",
+            "who is this",
+            "who is playing now",
+            "what {what} this is",
+            "who this is",
+            "what\u0027s playing",
+            "who\u0027s playing",
+            "who\u0027s this"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "synonyms": [
+                  "Deirdre O’Donoghue",
+                  "deerdra o. donohue",
+                  "deedra o. donohue",
+                  "s. n. a. p.",
+                  "snap",
+                  "bent by nature",
+                  "bent 24",
+                  "bent twenty four"
+                ],
+                "value": "bent"
+              },
+              "id": "bent"
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "kcrw music",
+                  "k. c. r. w. music",
+                  "eclectic",
+                  "music stream",
+                  "live music",
+                  "eclectic twenty four",
+                  "eclectic24",
+                  "eclectic 24",
+                  "eclectic twentyfour",
+                  "e. twenty four",
+                  "e. 24",
+                  "e. twentyfour",
+                  "twenty four",
+                  "24",
+                  "twentyfour"
+                ],
+                "value": "music"
+              },
+              "id": "music"
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "kcrw news",
+                  "k. c. r. w. news",
+                  "news twenty four",
+                  "news twentyfour",
+                  "news 24",
+                  "news stream",
+                  "live news"
+                ],
+                "value": "news"
+              },
+              "id": "news"
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "kcrw",
+                  "simulcast",
+                  "live stream",
+                  "k.c.r.w.",
+                  "radio",
+                  "live radio"
+                ],
+                "value": "live"
+              },
+              "id": "live"
+            }
+          ],
+          "name": "channels"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "synonyms": [
+                  "sings this track",
+                  "plays this track",
+                  "track",
+                  "song",
+                  "band",
+                  "sings this song",
+                  "plays this song",
+                  "playing this song",
+                  "singing this song",
+                  "singer"
+                ],
+                "value": "song"
+              },
+              "id": "song"
+            },
+            {
+              "name": {
+                "synonyms": [
+                  "d. j.",
+                  "host",
+                  "program",
+                  "d. j.\u0027s this show",
+                  "d. j.\u0027s this program",
+                  "hosts this program",
+                  "hosts this show"
+                ],
+                "value": "show"
+              },
+              "id": "show"
+            }
+          ],
+          "name": "what_types"
+        }
+      ],
+      "invocationName": "k. c. r. w."
+    }
+  }
+}

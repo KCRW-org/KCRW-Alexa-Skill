@@ -1,0 +1,24 @@
+{
+  "askToolkitResourcesVersion": "2020-04-15",
+  "profiles": {
+    "default": {
+      "skillId": "amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce",
+      "skillMetadata": {
+        "src": "skill-package"
+      },
+      "code": {
+        "default": {
+          "src": "./lambda/custom/build"
+        }
+      },
+      "skillInfrastructure": {
+        "userConfig": {
+          "runtime": "nodejs20.x",
+          "handler": "index.handler",
+          "awsRegion": "us-west-2"
+        },
+        "type": "@ask-cli/lambda-deployer"
+      }
+    }
+  }
+}

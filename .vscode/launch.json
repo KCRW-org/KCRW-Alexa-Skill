@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Alexa Skill (Node.js)",
+            "type": "node",
+            "runtimeVersion": "20.11.1",
+            "request": "launch",
+            "program": "${command:ask.debugAdapterPath}",
+            "args": [
+                "--accessToken",
+                "${command:ask.accessToken}",
+                "--skillId",
+                "${command:ask.skillIdFromWorkspace}",
+                "--handlerName",
+                "handler",
+                "--skillEntryFile",
+                "${workspaceFolder}/lambda/custom/build/index.js",
+                "--region",
+                "NA"
+            ],
+            "env": {
+                "AWS_PROFILE": "kcrw",
+                "AWS_SDK_LOAD_CONFIG": "1",
+                "AWS_REGION": "us-east-1"
+            }
+        }
+    ]
+
+}

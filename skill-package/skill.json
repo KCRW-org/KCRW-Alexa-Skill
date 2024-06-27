@@ -1,0 +1,180 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play K. C. R. W.",
+            "Alexa, ask K. C. R. W. to play music",
+            "Alexa, ask K. C. R. W. what song is this"
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music, 24 hour news, and Bent 24 streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "updatesDescription": "Add Bent 24 channel",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        },
+        "en-CA": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play K. C. R. W.",
+            "Alexa, ask K. C. R. W. to play music",
+            "Alexa, ask K. C. R. W. what song is this"
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music, 24 hour news, and Bent 24 streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "smallIconUri": "file://assets/images/en-CA_smallIconUri.png",
+          "updatesDescription": "Add Bent 24 channel",
+          "largeIconUri": "file://assets/images/en-CA_largeIconUri.png"
+        },
+        "en-IN": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play K. C. R. W.",
+            "Alexa, ask K. C. R. W. to play music",
+            "Alexa, ask K. C. R. W. what song is this"
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music, 24 hour news, and Bent 24 streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "smallIconUri": "file://assets/images/en-IN_smallIconUri.png",
+          "updatesDescription": "Add Bent 24 channel",
+          "largeIconUri": "file://assets/images/en-IN_largeIconUri.png"
+        },
+        "en-AU": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play K. C. R. W.",
+            "Alexa, ask K. C. R. W. to play music",
+            "Alexa, ask K. C. R. W. what song is this"
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music, 24 hour news, and Bent 24 streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "smallIconUri": "file://assets/images/en-AU_smallIconUri.png",
+          "updatesDescription": "Add Bent 24 channel",
+          "largeIconUri": "file://assets/images/en-AU_largeIconUri.png"
+        },
+        "en-GB": {
+          "summary": "Listen to live radio from KCRW, delivering music, culture, and NPR. Play any KCRW stream and find out what's playing now.",
+          "examplePhrases": [
+            "Alexa, play K. C. R. W.",
+            "Alexa, ask K. C. R. W. to play music",
+            "Alexa, ask K. C. R. W. what song is this"
+          ],
+          "keywords": [
+            "Streaming",
+            "Radio",
+            "Music",
+            "News",
+            "Culture",
+            "Santa",
+            "Monica"
+          ],
+          "name": "KCRW",
+          "description": "KCRW creates and curates a unique mix of content centered around music discovery, NPR news, cultural exploration and informed public affairs. This skill lets you listen to and explore KCRW's live radio, 24 hour music, 24 hour news, and Bent 24 streams on your Amazon device.\n\nKCRW is driven by the spirit of Los Angeles and delivers in innovative ways -- on the radio, digitally and in person -- to diverse, curious communities around the corner and around the world. A community service of Santa Monica College.",
+          "smallIconUri": "file://assets/images/en-GB_smallIconUri.png",
+          "updatesDescription": "Add Bent 24 channel",
+          "largeIconUri": "file://assets/images/en-GB_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "{\"ask_dist_username\":\"\",\"ask_dist_password\":\"\",\"ask_dist_testing_instructions\":\"Listen to KCRW live streams and find out what's currently playing. You can use commands like:\\n\\n\\\"Play KCRW\\\"\\n\\\"Ask KCRW what's playing\\\"\\n\\\"Ask KCRW what song this is\\\"\\n\\\"Ask KCRW what show is this\\\"\\n\\\"Play music from KCRW\\\"\\n\\\"Play Eclectic24 from KCRW\\\"\\n\\\"Play news from KCRW\\\"\"}",
+      "category": "RADIO",
+      "distributionMode": "PUBLIC",
+      "automaticClonedLocale": {
+        "locales": [
+          {
+            "source": "en-US"
+          }
+        ]
+      },
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-west-2:533322597784:function:ask-kcrw-default-default-1719462009100"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ],
+        "locales": {}
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "termsOfUseUrl": "https://www.kcrw.com/about/terms-of-service",
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        },
+        "en-CA": {
+          "termsOfUseUrl": "https://www.kcrw.com/about/terms-of-service",
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        },
+        "en-IN": {
+          "termsOfUseUrl": "https://www.kcrw.com/about/terms-of-service",
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        },
+        "en-AU": {
+          "termsOfUseUrl": "https://www.kcrw.com/about/terms-of-service",
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        },
+        "en-GB": {
+          "termsOfUseUrl": "https://www.kcrw.com/about/terms-of-service",
+          "privacyPolicyUrl": "https://www.kcrw.com/about/privacy-policy"
+        }
+      },
+      "containsAds": true,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "shoppingKit": {
+        "isShoppingActionsEnabled": false,
+        "isAmazonAssociatesOnAlexaEnabled": false
+      },
+      "usesPersonalInfo": false
+    }
+  }
+}
