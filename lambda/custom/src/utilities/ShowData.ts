@@ -11,15 +11,18 @@ export const showDataForChannel = async (responseBuilder: ResponseBuilder, chann
   let surl;
   switch (channel_id) {
     case "news":
-      surl = 'https://www.kcrw.com/now_playing.json?channel_id=kcrwnews';
+      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=kcrwnews';
       break;
     case "music":
       return songDataForChannel(responseBuilder, channel_id, callback, hide_card);
-    case "bent":
-      surl = 'https://www.kcrw.com/now_playing.json?channel_id=bent24';
+    case "vintage":
+      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=bent24';
+      break;
+    case "dance":
+      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=52n171gqYltPrfqZvWm2NG';
       break;
     default:
-      surl = 'https://www.kcrw.com/now_playing.json';
+      surl = 'https://contentful-frontend.kcrw.com/now_playing.json';
       break;
   }
   const response = await fetch(surl);
@@ -38,8 +41,8 @@ export const showDataForChannel = async (responseBuilder: ResponseBuilder, chann
       showText = sresponse.show_title + " - " + sresponse.title;
     }
     if (sresponse.square_image_retina) {
-      smallImageUrl = sresponse.square_image + '/mini?file.jpg'
-      largeImageUrl = sresponse.square_image_retina + '?file.jpg';
+      smallImageUrl = sresponse.square_image;
+      largeImageUrl = sresponse.square_image_retina;
     }
     if (sresponse.hosts) {
       for (let i=0; i < sresponse.hosts.length; i++) {

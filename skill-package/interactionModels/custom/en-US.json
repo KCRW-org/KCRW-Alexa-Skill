@@ -148,6 +148,23 @@
             {
               "name": {
                 "synonyms": [
+                  "damce music",
+                  "dance twenty four",
+                  "electronica",
+                  "electronic music",
+                  "techno",
+                  "techno music",
+                  "house music",
+                  "e.d.m.",
+                  "dem beats"
+                ],
+                "value": "dance"
+              },
+              "id": "dance"
+            },
+            {
+              "name": {
+                "synonyms": [
                   "Deirdre O’Donoghue",
                   "deerdra o. donohue",
                   "deedra o. donohue",
@@ -155,11 +172,13 @@
                   "snap",
                   "bent by nature",
                   "bent 24",
-                  "bent twenty four"
+                  "bent twenty four",
+                  "vintage twenty four",
+                  "vintage k.c.r.w."
                 ],
-                "value": "bent"
+                "value": "vintage"
               },
-              "id": "bent"
+              "id": "vintage"
             },
             {
               "name": {

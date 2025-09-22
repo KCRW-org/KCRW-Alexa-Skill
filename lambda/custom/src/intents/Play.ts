@@ -46,8 +46,12 @@ export const PlayHandler : RequestHandler = {
         persistentAttributes.channelId = "news";
         surl = 'https://streams.kcrw.com/news24_aac?aw_0_1st.playerid=ALEXA_SKILL';
         break;
-      case "bent":
-        persistentAttributes.channelId = "bent";
+      case "dance":
+        persistentAttributes.channelId = "dance";
+        surl = 'https://streams.kcrw.com/dance24_aac?aw_0_1st.playerid=ALEXA_SKILL';
+        break;
+      case "vintage":
+        persistentAttributes.channelId = "vintage";
         surl = 'https://streams.kcrw.com/bent24_aac?aw_0_1st.playerid=ALEXA_SKILL';
         break;
       default:
@@ -73,14 +77,20 @@ export const PlayHandler : RequestHandler = {
       if (currentChannel == "music") {
         responseBuilder = responseBuilder.withStandardCard(
           "KCRW's Eclectic 24", '',
-          'https://www.kcrw.com/music/shows/eclectic24/@@images/square_image/mini?file.png',
-          'https://www.kcrw.com/music/shows/eclecticsa24/@@images/square_image/full-2x?file.png'
+          'https://contentful-frontend.kcrw.com/shows/eclectic24/squareImageSmall.jpg',
+          'https://contentful-frontend.kcrw.com/shows/eclectic24/squareImage.jpg'
         );
-      } else if (currentChannel == 'bent') {
+      } else if (currentChannel == 'vintage') {
         responseBuilder = responseBuilder.withStandardCard(
-          "KCRW's Bent 24", '',
-          'https://www.kcrw.com/music/shows/bent-by-nature/@@images/square_image/mini?file.png',
-          'https://www.kcrw.com/music/shows/bent-by-nature/@@images/square_image/full-2x?file.png'
+          "KCRW's Vintage 24", '',
+          'https://contentful-frontend.kcrw.com/shows/vintage24/squareImageSmall.jpg',
+          'https://contentful-frontend.kcrw.com/shows/vintage24/squareImage.jpg',
+        );
+      } else if (currentChannel == 'dance') {
+        responseBuilder = responseBuilder.withStandardCard(
+          "KCRW's Dance 24", '',
+          'https://contentful-frontend.kcrw.com/shows/dance24/squareImageSmall.jpg',
+          'https://contentful-frontend.kcrw.com/shows/dance24/squareImage.jpg',
         );
       }
       responseBuilder = responseBuilder.addAudioPlayerPlayDirective("REPLACE_ALL", surl, channel_id, 0);

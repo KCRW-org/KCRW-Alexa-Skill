@@ -5,17 +5,17 @@
       "skillId": "amzn1.ask.skill.1a8abcbc-1fca-4f61-b87e-12da026087ce",
       "skillMetadata": {
         "eTag": "2f9144d87ccca7fdd905bb7a393bb21c",
-        "lastDeployHash": "T2kK/FRY8e8vRPehv45TE4K3U3Q=",
-        "lastImportId": "amzn1.ask-package.import.9c38b244-9d79-4af2-a7fc-2fcde8b994b1",
-        "lastImportTimestamp": "2024-06-27T06:28:18.988Z",
+        "lastDeployHash": "4BBDiDJnX6Zjg1b2ScNqfTn2Zhc=",
+        "lastImportId": "amzn1.ask-package.import.06915fe3-4227-456e-90ef-ab2f078efff7",
+        "lastImportTimestamp": "2025-09-22T22:43:17.606Z",
         "lastDeployType": "interaction-model"
       },
       "deploymentStatus": "COMPLETE",
       "code": {
         "default": {
-          "lastDeployHash": "uKv2rCv4m7Z+wQDnlPxVYTnUE4o="
+          "lastDeployHash": "/yhMQuCZY0opxWzVCl9xizBEoNc="
         },
-        "lastDeployTimestamp": "2024-06-27T06:33:32.007Z"
+        "lastDeployTimestamp": "2025-09-22T22:45:18.121Z"
       },
       "skillInfrastructure": {
         "@ask-cli/lambda-deployer": {
@@ -23,8 +23,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-west-2:533322597784:function:ask-kcrw-default-default-1719462009100",
-                "lastModified": "2024-06-27T06:33:30.000+0000",
-                "revisionId": "b9cd91e7-5cbe-44c9-9575-dcac54402206"
+                "lastModified": "2025-09-22T22:45:16.000+0000",
+                "revisionId": "05272f1c-1016-4e56-aaf2-ca43342b8a23"
               },
               "iamRole": "arn:aws:iam::533322597784:role/ask-lambda-KCRW-1719462008507"
             }
