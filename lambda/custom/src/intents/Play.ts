@@ -77,20 +77,20 @@ export const PlayHandler : RequestHandler = {
       if (currentChannel == "music") {
         responseBuilder = responseBuilder.withStandardCard(
           "KCRW's Eclectic 24", '',
-          'https://contentful-frontend.kcrw.com/shows/eclectic24/squareImageSmall.jpg',
-          'https://contentful-frontend.kcrw.com/shows/eclectic24/squareImage.jpg'
+          'https://www.kcrw.com/shows/eclectic24/squareImageSmall.jpg',
+          'https://www.kcrw.com/shows/eclectic24/squareImage.jpg'
         );
       } else if (currentChannel == 'vintage') {
         responseBuilder = responseBuilder.withStandardCard(
           "KCRW's Vintage 24", '',
-          'https://contentful-frontend.kcrw.com/shows/vintage24/squareImageSmall.jpg',
-          'https://contentful-frontend.kcrw.com/shows/vintage24/squareImage.jpg',
+          'https://www.kcrw.com/shows/vintage24/squareImageSmall.jpg',
+          'https://www.kcrw.com/shows/vintage24/squareImage.jpg',
         );
       } else if (currentChannel == 'dance') {
         responseBuilder = responseBuilder.withStandardCard(
           "KCRW's Dance 24", '',
-          'https://contentful-frontend.kcrw.com/shows/dance24/squareImageSmall.jpg',
-          'https://contentful-frontend.kcrw.com/shows/dance24/squareImage.jpg',
+          'https://www.kcrw.com/shows/dance24/squareImageSmall.jpg',
+          'https://www.kcrw.com/shows/dance24/squareImage.jpg',
         );
       }
       responseBuilder = responseBuilder.addAudioPlayerPlayDirective("REPLACE_ALL", surl, channel_id, 0);

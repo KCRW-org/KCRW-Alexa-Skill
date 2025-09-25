@@ -10,7 +10,14 @@ import { IntentTypes } from "../types";
 
 export const CancelAndStopHandler : RequestHandler = {
     canHandle(handlerInput : HandlerInput) : boolean {
-      return IsIntent(handlerInput, IntentTypes.Stop, IntentTypes.Cancel, IntentTypes.CustomStop, IntentTypes.Pause);
+      return IsIntent(
+        handlerInput,
+        IntentTypes.Stop,
+        IntentTypes.Cancel,
+        IntentTypes.CustomStop,
+        IntentTypes.Pause,
+        IntentTypes.AudioStop
+      );
     },
     handle(handlerInput : HandlerInput) : Response {
       return handlerInput.responseBuilder.addAudioPlayerStopDirective().getResponse();

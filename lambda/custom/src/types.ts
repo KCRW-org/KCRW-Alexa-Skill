@@ -22,6 +22,7 @@ export enum IntentTypes {
   Fallback = 'AMAZON.FallbackIntent',
   Pause = 'AMAZON.PauseIntent',
   Resume = 'AMAZON.ResumeIntent',
+  AudioStop = 'AudioPlayer.PlaybackStopped',
   Play = 'PlayIntent',
   What = 'WhatIntent',
   CustomStop = 'StopIntent',

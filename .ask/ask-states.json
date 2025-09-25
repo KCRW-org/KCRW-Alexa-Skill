@@ -13,9 +13,9 @@
       "deploymentStatus": "COMPLETE",
       "code": {
         "default": {
-          "lastDeployHash": "/yhMQuCZY0opxWzVCl9xizBEoNc="
+          "lastDeployHash": "JmM/h5z+kH2FWzTCRh6lFa4GVhM="
         },
-        "lastDeployTimestamp": "2025-09-22T22:45:18.121Z"
+        "lastDeployTimestamp": "2025-09-25T20:45:14.819Z"
       },
       "skillInfrastructure": {
         "@ask-cli/lambda-deployer": {
@@ -23,8 +23,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-west-2:533322597784:function:ask-kcrw-default-default-1719462009100",
-                "lastModified": "2025-09-22T22:45:16.000+0000",
-                "revisionId": "05272f1c-1016-4e56-aaf2-ca43342b8a23"
+                "lastModified": "2025-09-25T20:45:13.000+0000",
+                "revisionId": "9c1eebfd-1f21-46c5-88c2-2d4222432a91"
               },
               "iamRole": "arn:aws:iam::533322597784:role/ask-lambda-KCRW-1719462008507"
             }

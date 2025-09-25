@@ -11,18 +11,18 @@ export const showDataForChannel = async (responseBuilder: ResponseBuilder, chann
   let surl;
   switch (channel_id) {
     case "news":
-      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=kcrwnews';
+      surl = 'https://www.kcrw.com/now_playing.json?channel_id=kcrwnews';
       break;
     case "music":
       return songDataForChannel(responseBuilder, channel_id, callback, hide_card);
     case "vintage":
-      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=bent24';
+      surl = 'https://www.kcrw.com/now_playing.json?channel_id=bent24';
       break;
     case "dance":
-      surl = 'https://contentful-frontend.kcrw.com/now_playing.json?channel_id=52n171gqYltPrfqZvWm2NG';
+      surl = 'https://www.kcrw.com/now_playing.json?channel_id=52n171gqYltPrfqZvWm2NG';
       break;
     default:
-      surl = 'https://contentful-frontend.kcrw.com/now_playing.json';
+      surl = 'https://www.kcrw.com/now_playing.json';
       break;
   }
   const response = await fetch(surl);
